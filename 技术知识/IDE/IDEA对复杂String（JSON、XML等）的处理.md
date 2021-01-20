@@ -1,6 +1,6 @@
 # IDEA 完成对JSON、xml等字符串的编辑
 
-
+[toc]
 
 ## 背景
 
@@ -26,7 +26,7 @@ String tmpJsonStr2 = "{\"name\":\"zhangsan\",\"age\":18}" ;
 
 ## 解决方案
 
-### 方案一
+### 方案一 使用IDEA能力
 
 ​	使用IDEA中自带的JSON格式化能力 **Inject language or reference**
 
@@ -75,7 +75,7 @@ String tmpJsonStr = "{\"name\":\"zhangsan\"}" ;
 
 
 
-### 方案二
+### 方案二 接住外部工具
 
 使用sublime text 或 其它网页的json-format 能力去修改；在此文中不做详细描述
 

@@ -131,6 +131,6 @@ doReturn("test").when(myClass).anotherMethodInClass();
 when(myClass.anotherMethodInClass()).thenReturn("test");
 ```
 
-
+**注意：**doReturn().when() 使用，如果when中是私有方法，依旧会去执行这个方法，不会直接跳过
 
 其它使用方法待更新...

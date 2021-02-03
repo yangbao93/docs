@@ -1,0 +1,119 @@
+# 深入理解单例模式 \( 上 \)
+
+## 深入理解单例模式 \( 上 \)
+
+[Java编程精选](shen-ru-li-jie-dan-li-mo-shi-shang.md)  
+点击上方“ **Java编程精选** ”，选择“置顶公众号”
+
+关键时刻，第一时间送达！
+
+!\[\]\(%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%20\(%20%E4%B8%8A%20\)/640.jpg\)
+
+!\[\]\(%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%20\(%20%E4%B8%8A%20\)/640.gif\)
+
+> 来源：拿笔小星\_
+>
+> blog.csdn.net/u013096088/article/details/81161084
+>
+> Java编程精选整理发布，转载请联系作者获得授权
+
+最近在阅读《Effective Java 》这本书，第3个条款专门提到了单例属性，并给出了使用单例的最佳实践建议。让我对这个单例模式（原本我以为是设计模式中最简单的一种）有了更深的认识。
+
+## 单例模式
+
+单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+
+在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个的全局对象，这样有利于我们协调系统整体的行为。
+
+## 单例的特点
+
+单例类只能有一个实例。 单例类必须自己创建自己的唯一实例。 单例类必须给所有其他对象提供这一实例。
+
+## 单例模式的7种写法
+
+单例模式的写法很多，涉及到了线程安全和性能问题。在这里我不重复介绍。这篇《单例模式的七种写法》写得很详细，博主也给出了每一种写法的优缺点。
+
+> [http://www.hollischuang.com/archives/205](http://www.hollischuang.com/archives/205)
+
+但是，单例模式真的能够实现实例的唯一性吗？答案是否定的。
+
+## 如何破坏单例
+
+### 反射
+
+有两种常见的方式来实现单例。他们的做法都是将构造方法设为私有，并导出一个公有的静态成员来提供对唯一实例的访问。在第1种方式中，成员是个final字段：
+
+```text
+// Singleton with public final field public class Elvis {    public static final Elvis INSTANCE = new Elvis();    private Elvis() { ... }    public void leaveTheBuilding() { ... } }
+```
+
+只调用私有构造函数一次，以初始化公共静态final字段elvi.instance。不提供公有的或者受保护的构造函数保证了全局唯一性：当Elvis类初始化的时候，仅仅只会有一个Elvis实例存在——不多也不少 。无论客户端怎么做都无法改变这一点，只不过我还是要警告一下 ：授权的客户端可以通过反射来调用私有构造方法，借助于AccessibleObject.setAccessible方法即可做到 。如果需要防范这种攻击，请修改构造函数，使其在被要求创建第二个实例时抛出异常。
+
+测试代码：
+
+```text
+public class TestSingleton {    /**     * 通过反射破坏单例     */    @Test    public void testReflection() throws Exception {        /**         * 验证单例有效性         */        Elvis elvis1 = Elvis.INSTANCE;        Elvis elvis2 = Elvis.INSTANCE;        System.out.println("elvis1 == elvis2 ? ===>" + (elvis1 == elvis2));        System.err.println("-----------------");        /**         * 反射调用构造方法         */        Class clazz = Elvis.class;        Constructor cons = clazz.getDeclaredConstructor(null);        cons.setAccessible(true);        Elvis elvis3 = (Elvis) cons.newInstance(null);        System.out.println("elvis1 == elvis3 ? ===> "            + (elvis1 == elvis3));    } }
+```
+
+运行结果：
+
+> Elvis Constructor is invoked!  
+> elvis1 == elvis2 ? =⇒ true  
+> elvis1 == elvis3 ? =⇒ false  
+> Elvis Constructor is invoked!
+
+结论：
+
+反射是可以破坏单例属性的。因为我们通过反射把它的构造函数设成可访问的，然后去生成一个新的对象。
+
+改进版的单例写法：
+
+```text
+public class Elvis {    public static final Elvis INSTANCE = new Elvis();    private Elvis() {        System.err.println("Elvis Constructor is invoked!");        if (INSTANCE != null) {            System.err.println("实例已存在，无法初始化！");            throw new UnsupportedOperationException("实例已存在，无法初始化！");        }    } }
+```
+
+结果：
+
+```text
+Elvis Constructor is invoked! elvis1 == elvis2 ? ===> true ----------------- Elvis Constructor is invoked! 实例已存在，无法初始化！
+```
+
+第2种实现单例模式的方法是，提供一个公有的静态工厂方法：
+
+```text
+// Singleton with static factory public class Elvis {    private static final Elvis INSTANCE = new Elvis();    private Elvis() { ... }    public static Elvis getInstance() { return INSTANCE; }    public void leaveTheBuilding() { ... } }
+```
+
+所有调用Elvis类的getInstance方法，返回相同的对象引用，并且不会有其它的Elvis对象被创建。但同样有上面第1个方法提到的反射破坏单例属性的问题存在。
+
+序列化和反序列化
+
+如果对上述2种方式实现的单例类进行序列化，反序列化得到的对象是否是同一个对象呢？答案是否定的。
+
+看下面的测试代码： 单例类：
+
+```text
+public class Elvis implements Serializable {    public static final Elvis INSTANCE = new Elvis();    private Elvis() {        System.err.println("Elvis Constructor is invoked!");    } }
+```
+
+测试代码：
+
+```text
+/** * 序列化对单例属性的影响 * @throws Exception */ @Test public void testSerialization() throws Exception {    Elvis elvis1 = Elvis.INSTANCE;    FileOutputStream fos = new FileOutputStream("a.txt");    ObjectOutputStream oos = new ObjectOutputStream(fos);    oos.writeObject(elvis1);    oos.flush();    oos.close();    Elvis elvis2 = null;    FileInputStream fis = new FileInputStream("a.txt");    ObjectInputStream ois = new ObjectInputStream(fis);    elvis2 = (Elvis) ois.readObject();    System.out.println("elvis1 == elvis2 ? ===>" + (elvis1 == elvis2)); }
+```
+
+结果是：
+
+> Elvis Constructor is invoked!  
+> elvis1 == elvis2 ? =⇒false
+
+说明：
+
+通过对序列化后的Elvis 进行反序列化得到的对象是一个新的对象，这就破坏了Elvis 的单例性。
+
+!\[\]\(%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%20\(%20%E4%B8%8A%20\)/640.gif\)
+
+!\[\]\(%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%20\(%20%E4%B8%8A%20\)/640.gif\) [【点击成为源码大神】](https://mp.weixin.qq.com/s?__biz=MzI0NjYxMDQ4OQ==&amp;mid=2247484655&amp;idx=4&amp;sn=b63f0a1e32df2fed7ba7e0f0e838e3f9&amp;scene=21#wechat_redirect)
+
+[http://mp.weixin.qq.com/s?\_\_biz=MzI4MDYwMDc3MQ==&mid=2247485101&idx=1&sn=5fce8dddc7fc66db8f14d4fc3bbf5227&chksm=ebb74f01dcc0c617ca2abe6ab43f54a40545e9810c63d1a5f173a9bc89a330179b8acd6b3d5e&mpshare=1&scene=1&srcid=0802hKH2O89HehqOHYW9ELpq\#rd](http://mp.weixin.qq.com/s?__biz=MzI4MDYwMDc3MQ==&mid=2247485101&idx=1&sn=5fce8dddc7fc66db8f14d4fc3bbf5227&chksm=ebb74f01dcc0c617ca2abe6ab43f54a40545e9810c63d1a5f173a9bc89a330179b8acd6b3d5e&mpshare=1&scene=1&srcid=0802hKH2O89HehqOHYW9ELpq#rd)
+

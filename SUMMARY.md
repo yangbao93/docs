@@ -104,6 +104,7 @@
       * [Mybatis-Plus 集成（Spring boot项目）](ji-shu-zhi-shi/shu-ju-ku/mysql/mybatisplus-ji-cheng-spring-boot-xiang-mu.md)
       * [再有人问你分布式事务，把这篇扔给他](ji-shu-zhi-shi/shu-ju-ku/mysql/zai-you-ren-wen-ni-fen-bu-shi-shi-wu-ba-zhe-pian-reng-gei-ta.md)
       * [sql 插入数据取sid最大值加一保存 - CSDN博客](ji-shu-zhi-shi/shu-ju-ku/mysql/sql-cha-ru-shu-ju-qu-sid-zui-da-zhi-jia-yi-bao-cun-csdn-bo-ke.md)
+      * [MySQL处理JSON](ji-shu-zhi-shi/shu-ju-ku/mysql/MySQL处理JSON.md)
   * [IDE](ji-shu-zhi-shi/ide/README.md)
     * [IDEA 完成对JSON、xml等字符串的编辑](ji-shu-zhi-shi/ide/idea-dui-fu-za-stringjsonxml-deng-de-chu-li.md)
   * [Python](ji-shu-zhi-shi/python/README.md)

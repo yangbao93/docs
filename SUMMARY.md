@@ -1,6 +1,5 @@
 # Table of contents
 
-* [ReadMe](README.md)
 * [技术知识](ji-shu-zhi-shi/README.md)
   * [Java](ji-shu-zhi-shi/java/README.md)
     * [pdf添加水印](ji-shu-zhi-shi/java/pdf-tian-jia-shui-yin.md)

@@ -69,6 +69,7 @@
     * [SpringBoot \| 第二章：lombok 介绍及简单使用](ji-shu-zhi-shi/java/springboot-di-er-zhang-lombok-jie-shao-ji-jian-dan-shi-yong.md)
     * [你真的了解java的lambda吗？- java lambda用法与源码分析](ji-shu-zhi-shi/java/ni-zhen-de-le-jie-java-de-lambda-ma-java-lambda-yong-fa-yu-yuan-ma-fen-xi.md)
     * [Empty 和 Blank的区别（trim 、strip）](ji-shu-zhi-shi/java/empty-he-blank-de-qu-bie-trim-strip.md)
+    * [JsonNode中asText和toString的区别](ji-shu-zhi-shi/java/JsonNode中asText和toString的区别.md)
   * [其它](ji-shu-zhi-shi/qi-ta/README.md)
     * [Git:Maven](ji-shu-zhi-shi/qi-ta/git-maven/README.md)
       * [git常用命令，常见问题](ji-shu-zhi-shi/qi-ta/git-maven/git-chang-yong-ming-ling-chang-jian-wen-ti.md)

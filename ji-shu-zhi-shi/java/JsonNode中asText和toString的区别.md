@@ -58,6 +58,8 @@ public abstract class ValueNode
 {...}
 ```
 
+### toString()方法
+
 然后 **TextNode**继承实现了ValueNode
 
 ```java
@@ -90,6 +92,8 @@ public class TextNode
 我们发现在**TextNode**中，实现toString()方法的时候，对值进行了"的包裹，所以导致了上述问题的产生；
 
 **如何避免这个问题呢？**
+
+### asText()方法
 
 ```java
 @Override

@@ -93,15 +93,40 @@ public class StaticMockDemo {
     }
 ```
 
+### 给私有成员变量赋值
+
+```java
+@Test
+    public void test() {
+        MockDemo spy = PowerMockito.spy(new MockDemo());
+        //给私有成员变量赋值
+        MemberModifier.field(MockDemo.class, "privateFieldX").set(spy, "privateFieldXValue");
+    }
+```
+
+### 获取私有成员变量的值
+
+```java
+@Test
+    public void test() {
+        MockDemo spy = PowerMockito.spy(new MockDemo());
+        MemberModifier.field(MockDemo.class, "privateFieldX").set(spy, "privateFieldXValue");
+        // 获取私有变量的值
+        String fileValue = (String) MemberModifier.field(MockDemo.class, "privateFieldX").get(spy);
+    }
+```
+
+
+
 ## PowerMockito中使用过程中的一些问题
 
 ### doReturn\(\).when\(\) 和 when\(\).thenReturn\(\)
 
 **场景：**
 
-​ 在使用PowerMockito写单测的时候，由于有个方法我需要mock掉，不能进入实际的方法中。于是使用when.. thenReturn的写法，结果一直进入到需要mock的方法中去，报错！
+ 在使用PowerMockito写单测的时候，由于有个方法我需要mock掉，不能进入实际的方法中。于是使用when.. thenReturn的写法，结果一直进入到需要mock的方法中去，报错！
 
-​ 后来查阅资料后发现，when...doReturn... 会在返回结果之前走真正的方法，只是在结果返回的时候给出return的的数据；如果不希望进入某个方法，可以使用doreturn...when的方式，这样会跳过这个方法执行，直接返回结果。
+ 后来查阅资料后发现，when...doReturn... 会在返回结果之前走真正的方法，只是在结果返回的时候给出return的的数据；如果不希望进入某个方法，可以使用doreturn...when的方式，这样会跳过这个方法执行，直接返回结果。
 
 **参考资料 Stack Overflow** **：**[https://stackoverflow.com/questions/20353846/mockito-difference-between-doreturn-and-when](https://stackoverflow.com/questions/20353846/mockito-difference-between-doreturn-and-when)
 

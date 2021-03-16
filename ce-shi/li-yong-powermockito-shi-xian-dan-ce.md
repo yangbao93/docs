@@ -93,6 +93,74 @@ public class StaticMockDemo {
     }
 ```
 
+### mock私有void方法
+
+在一些操作中，我们需要对私有方法进行mock，这个私有方法可能还是void方法，他们只是对一些数据进行处理；
+
+我们会使用这种方法去mock
+
+```java
+@Test
+public void testMockPrivateVoidMethod(){
+  ProductSaveStep demo = PowerMockito.spy(new MockDemo());
+  PowerMockito.when(demo, "privateVoidMethod", param1, param2);
+}
+```
+
+这样的方法mock会导致一个错误，就是抛出未完成异常。在网上都没找到对应的解决方案。故自己研究了一下
+
+```java
+// 无法catch住这个异常，导致单测失败
+org.mockito.exceptions.misusing.UnfinishedStubbingException: 
+Unfinished stubbing detected here:
+
+E.g. thenReturn() may be missing.
+Examples of correct stubbing:
+    when(mock.isOk()).thenReturn(true);
+    when(mock.isOk()).thenThrow(exception);
+    doThrow(exception).when(mock).someVoidMethod();
+Hints:
+ 1. missing thenReturn()
+ 2. you are trying to stub a final method, which is not supported
+ 3. you are stubbing the behaviour of another mock inside before 'thenReturn' instruction is completed
+
+
+	at org.junit.runner.notification.RunNotifier$7.notifyListener(RunNotifier.java:191)
+	at org.junit.runner.notification.RunNotifier$SafeNotifier.run(RunNotifier.java:61)
+	at org.junit.runner.notification.RunNotifier.fireTestFinished(RunNotifier.java:188)
+	at org.junit.internal.runners.MethodRoadie.run(MethodRoadie.java:52)
+	at org.junit.internal.runners.ClassRoadie.runUnprotected(ClassRoadie.java:33)
+	at org.junit.internal.runners.ClassRoadie.runProtected(ClassRoadie.java:45)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:220)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:53)
+```
+
+告诉我们必须thenReturn()或者是someVoidMethod()才可以。**！！！这个异常无法catch住！！！**
+
+1. 首先我们是void方法，并没有返回值；
+2. 其次我们是用的PowerMockito没有someVoidMethod（我没有找到）；
+
+难道我们就只能修改原来的方法，让他成为public 或者 是带return值的吗？
+
+**当然是有其他方法可以处理的**，就是在执行完后增加thenThrow方法，并catch这个异常，抢在框架抛规范异常前，先抛出异常！然后再catch住我们抛出的异常即可。不过需要在catch的时候，细分出我们的异常去catch，不要让流程中的异常也被我们catch掉了~
+
+```java
+@Test
+public void testMockPrivateVoidMethod(){
+  ProductSaveStep demo = PowerMockito.spy(new MockDemo());
+  try{
+    PowerMockito.when(demo, "privateVoidMethod", param1, param2).thenThrow(new Exception());
+  }catch(Exception e){
+    // ...
+  }
+}
+```
+
+
+
 ### 给私有成员变量赋值
 
 ```java

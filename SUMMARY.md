@@ -87,6 +87,7 @@
       * [IntelliJ Idea 项目\(初始化删除\) Git - CSDN博客](ji-shu-zhi-shi/qi-ta/ide/intellij-idea-xiang-mu-chu-shi-hua-shan-chu-git-csdn-bo-ke.md)
       * [Java程序员必备的Intellij插件](ji-shu-zhi-shi/qi-ta/ide/java-cheng-xu-yuan-bi-bei-de-intellij-cha-jian.md)
       * [IDEA无法显示maven project模块](ji-shu-zhi-shi/qi-ta/ide/idea-wu-fa-xian-shi-maven-project-mo-kuai.md)
+      * [利用IDEA查看源码](ji-shu-zhi-shi/qi-ta/ide/利用IDEA查看源码.md)
   * [数据库](ji-shu-zhi-shi/shu-ju-ku/README.md)
     * [Mysql](ji-shu-zhi-shi/shu-ju-ku/mysql/README.md)
       * [MySQL数据库将多条记录的单个字段合并成一条记录 - Rainyn - 博客园](ji-shu-zhi-shi/shu-ju-ku/mysql/mysql-shu-ju-ku-jiang-duo-tiao-ji-lu-de-dan-ge-zi-duan-he-bing-cheng-yi-tiao-ji-lu-rainyn-bo-ke-yuan.md)

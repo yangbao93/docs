@@ -232,5 +232,52 @@ when(myClass.anotherMethodInClass()).thenReturn("test");
 
 **注意：**doReturn\(\).when\(\) 使用，如果when中是私有方法，依旧会去执行这个方法，不会直接跳过
 
+
+
+## 常见问题
+
+### UnfinishedStubbingException
+
+**错误日志**
+
+~~~java
+org.mockito.exceptions.misusing.UnfinishedStubbingException: 
+Unfinished stubbing detected here:
+-> at ****(****.java:46)
+
+E.g. thenReturn() may be missing.
+Examples of correct stubbing:
+    when(mock.isOk()).thenReturn(true);
+    when(mock.isOk()).thenThrow(exception);
+    doThrow(exception).when(mock).someVoidMethod();
+Hints:
+ 1. missing thenReturn()
+ 2. you are trying to stub a final method, which is not supported
+ 3. you are stubbing the behaviour of another mock inside before 'thenReturn' instruction is completed
+~~~
+
+**原因**
+
+​	这个也是困扰我很久的问题，我对一个方法使用了doReturn...when... 然后就会一直是这个错误，目前没有找到合适的解决方案。只好把方法给拆开，把这个单独拎开try catch
+
+### InvalidUseOfMatchersException
+
+**错误日志**
+
+~~~java
+org.mockito.exceptions.misusing.InvalidUseOfMatchersException: 
+Invalid use of argument matchers!
+2 matchers expected, 1 recorded:
+
+// 代码
+PowerMockito.when(helper.queryName(Mockito.any(), "alias")).thenReturn("for test");
+~~~
+
+**原因**
+
+在使用Mockito的传入参数的时候，如果一个使用了，其他的都需要mock。不能一个是正常的，一个是mock的。即所有的参数要么都Matcher，要么都不用Matcher。
+
+
+
 其它使用方法待更新...
 

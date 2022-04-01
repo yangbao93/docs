@@ -1,6 +1,8 @@
 # maven打包语句
 
-clean package -D skipTests
+```bash
+maven package -D skipTests
+```
 
 skipTests 代表跳过测试
 

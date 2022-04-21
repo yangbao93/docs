@@ -7,8 +7,12 @@
         "id": "14180b8346b95fbd",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "技术知识/算法/leetcode/83.删除排序链表中的重复元素.md",
+            "mode": "source",
+            "source": false
+          }
         }
       }
     ],
@@ -65,6 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "技术知识/算法/leetcode/83.删除排序链表中的重复元素.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -84,8 +89,8 @@
   },
   "active": "14180b8346b95fbd",
   "lastOpenFiles": [
-    "2022-04-21.md",
     "技术知识/算法/leetcode/83.删除排序链表中的重复元素.md",
+    "2022-04-21.md",
     "2022-04-01.md",
     "README.md",
     "技术知识/其它/git-maven/maven打包语句.md",

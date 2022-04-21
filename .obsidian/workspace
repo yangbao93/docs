@@ -4,15 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "de25cc1d860fb4bd",
+        "id": "14180b8346b95fbd",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "README.md",
-            "mode": "source",
-            "source": false
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -69,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -87,17 +82,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "de25cc1d860fb4bd",
+  "active": "14180b8346b95fbd",
   "lastOpenFiles": [
+    "2022-04-21.md",
+    "技术知识/算法/leetcode/83.删除排序链表中的重复元素.md",
+    "2022-04-01.md",
     "README.md",
     "技术知识/其它/git-maven/maven打包语句.md",
     "技术知识/其它/git-maven/Git常用命令速查表（收藏大全）.md",
     "技术知识/Java/Java中执行Jar中某一个类.md",
     "Pasted image 20220325114917.png",
     "技术知识/运维/Linux ping与telnet判断网络问题.md",
-    "Pasted image 20220325114030.png.md",
-    "Pasted image 20220325114030.png",
-    "技术知识/Java/ActiveMQ学习.md",
-    "技术知识/Java/Spring常用注解（收藏大全）.md"
+    "Pasted image 20220325114030.png.md"
   ]
 }

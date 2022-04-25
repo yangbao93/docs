@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "技术知识/算法/leetcode/102.二叉树的层序遍历.md",
+            "file": "技术知识/算法/leetcode/31.下一个排列.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "技术知识/算法/leetcode/102.二叉树的层序遍历.md",
+                "file": "技术知识/算法/leetcode/31.下一个排列.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,6 +89,7 @@
   },
   "active": "fa5b0a839bd487eb",
   "lastOpenFiles": [
+    "技术知识/算法/leetcode/31.下一个排列.md",
     "技术知识/算法/leetcode/102.二叉树的层序遍历.md",
     "技术知识/算法/leetcode/145.二叉树的后序遍历.md",
     "技术知识/算法/leetcode/144.二叉树的前序遍历.md",
@@ -97,7 +98,6 @@
     "2022-04-21.md",
     "2022-04-01.md",
     "README.md",
-    "技术知识/其它/git-maven/maven打包语句.md",
-    "技术知识/其它/git-maven/Git常用命令速查表（收藏大全）.md"
+    "技术知识/其它/git-maven/maven打包语句.md"
   ]
 }

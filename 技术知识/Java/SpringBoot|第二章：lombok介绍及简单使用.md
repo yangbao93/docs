@@ -1,6 +1,6 @@
-# SpringBoot \| 第二章：lombok 介绍及简单使用
+# SpringBoot | 第二章：lombok 介绍及简单使用
 
-## SpringBoot \| 第二章：lombok 介绍及简单使用
+## SpringBoot | 第二章：lombok 介绍及简单使用
 
 oKong [ImportNew](springboot-di-er-zhang-lombok-jie-shao-ji-jian-dan-shi-yong.md)  
 （点击上方公众号，可快速关注）

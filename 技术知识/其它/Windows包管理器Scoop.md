@@ -99,3 +99,5 @@ administor 权限问题
 [# Scoop——也许是Windows平台最好用的软件（包）管理器](https://zhuanlan.zhihu.com/p/463284082)
 
 [# Windows | Scoop软件包管理神器](https://www.limufang.com/post/569.html)
+
+[# 教程_Scoop:超好用的Windows包管理器 _](https://www.cnblogs.com/Edge-coordinates/p/15130184.html#%E5%89%8D%E8%A8%80)

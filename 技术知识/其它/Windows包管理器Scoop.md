@@ -52,8 +52,7 @@ iwr -useb get.scoop.sh | iex
 
 需要更改默认的安装目录，则需要在执行以上命令前添加环境变量的定义，通过执行以下命令完成
 ```powershell
-$env:SCOOP='D:\Applications\Scoop'
-[Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
+$env:SCOOP='D:\Applications\Scoop' [Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
 ```
 ## 使用
 常见的命令：

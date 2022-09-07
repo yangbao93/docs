@@ -309,6 +309,8 @@ awk -f functions.awk
 # 其他资料
 
 [# awk基础知识及用法](https://blog.csdn.net/xiangmomo1/article/details/106851834)
+
 [# awk 实战用法](https://juejin.cn/post/7136957973674328072#heading-9)
+
 [# 30 分钟包你学会 AWK](https://zhuanlan.zhihu.com/p/97583769)
 
